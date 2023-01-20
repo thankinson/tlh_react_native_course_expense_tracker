@@ -1,5 +1,5 @@
 import { useContext, useLayoutEffect } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Button from "../components/ui/Button";
 import IconButton from "../components/ui/IconButton";
 import GlobalStyles from "../constants/GlobalStyles";
@@ -42,7 +42,7 @@ export default function ManageExpense({route, navigation}){
         {
           description: 'test', 
           amount: 19.99, 
-          date: new Date()
+          date: new Date('2023-01-18')
         }
       );
     }

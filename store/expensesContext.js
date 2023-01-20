@@ -30,7 +30,7 @@ const DUMMY_EXPENSE = [
 
 export const ExspensesContext = createContext({
   expenses: [],
-  addExpense: ({description, amount, date}) => {},
+  addExpense: ({ description, amount, date }) => {},
   deleteExpense: (id) => {},
   updateExpense: (id, {description, amount, date}) => {},
 
@@ -41,7 +41,6 @@ function expenseReducer(state, action){
   case 'ADD':
     const id = new Date().toString() + Math.random().toString();
     return [{ ...action.payload, id: id }, ...state];
-    
   case 'UPDATE':
     const updateableExpenseIndex = state.findIndex((expense)=> expense.id === action.payload.id )
     const updateableExpense = state[updateableExpenseIndex]
