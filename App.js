@@ -1,8 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar'; // for setting the phones status bar colour
+import { NavigationContainer } from '@react-navigation/native'; // for setting navigation container
+import { createNativeStackNavigator } from '@react-navigation/native-stack'; // stack navigation
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; // draw navigation
+import { Ionicons } from '@expo/vector-icons'; // imports the Ionicans libray of useable images. 
 
 import ManageExpense from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
@@ -13,6 +13,10 @@ import ExpensesContextProvider from './store/expenses-context';
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
+
+// app js is loaded first
+// you can build a single page app or a multi page app using variouse navigation options.
+// this app uses stack and bottomTabs navigation.
 
 function ExpensesOverview() {
   return (

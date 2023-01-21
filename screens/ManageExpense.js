@@ -6,24 +6,28 @@ import IconButton from '../components/UI/IconButton';
 import { GlobalStyles } from '../constants/styles';
 import { ExpensesContext } from '../store/expenses-context';
 import ExpenseForm from '../components/ManageExpense/ExpenseForm';
+
+// manage expense screen will check to see if you are creating a new item or updating an existing item.
+// the key functions of thoos screen is to display and allow a user to add, update or delete a list item.
+
 function ManageExpense({ route, navigation }) {
   const expensesCtx = useContext(ExpensesContext);
 
-  const editedExpenseId = route.params?.expenseId;
+  const editedExpenseId = route.params?.expenseId; 
   const isEditing = !!editedExpenseId;
 
   const selectedExpense = expensesCtx.expenses.find(
-    (expense) => expense.id === editedExpenseId)
+    (expense) => expense.id === editedExpenseId) // checks id in list 
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: isEditing ? 'Edit Expense' : 'Add Expense',
+      title: isEditing ? 'Edit Expense' : 'Add Expense', // if isEditing true 'Edit Expense' displayed else 'Add expense"
     });
   }, [navigation, isEditing]);
 
   function deleteExpenseHandler() {
-    expensesCtx.deleteExpense(editedExpenseId);
-    navigation.goBack();
+    expensesCtx.deleteExpense(editedExpenseId); // gets current id and deletes item from list
+    navigation.goBack(); // goes back to previouse screen
   }
 
   function cancelHandler() {
@@ -31,11 +35,11 @@ function ManageExpense({ route, navigation }) {
   }
 
   function confirmHandler(expenseData) {
-    if (isEditing) {
+    if (isEditing) { // if isEditing true update current list item
       expensesCtx.updateExpense(
         editedExpenseId, expenseData
       );
-    } else {
+    } else { // else add new item
       expensesCtx.addExpense(expenseData);
     }
     navigation.goBack();
@@ -44,7 +48,7 @@ function ManageExpense({ route, navigation }) {
   return (
     <View style={styles.container}>
       <ExpenseForm 
-        submitButtonLabel={isEditing ? 'Update' : 'Add'}
+        submitButtonLabel={isEditing ? 'Update' : 'Add'} // if isEditing true 'Update' displayed esle 'Add'
         onCancel={cancelHandler} onSubmit={confirmHandler}
         defaultValue={selectedExpense}
         />  

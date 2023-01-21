@@ -10,6 +10,8 @@ function ExpenseForm({onCancel, onSubmit, submitButtonLabel, defaultValue}){
   // const [amountValue, setAmountValue] = useState('');
   // const [dateValue, setDateValue] = useState('');
   // const [description, setDescription ] = useState('')
+
+  // useStare array of items. used instead of multiple useStates
   const [inputs, setInputs] = useState({
     amount: { 
       value: defaultValue ? defaultValue.amount.toString() : '',
@@ -32,6 +34,7 @@ function ExpenseForm({onCancel, onSubmit, submitButtonLabel, defaultValue}){
   });
 
   function inputChangedHandler(inputIdentifier, enteredValue){
+    // updates the state 
     setInputs((curInputs)=> {
       return {
         ...curInputs,
@@ -40,19 +43,21 @@ function ExpenseForm({onCancel, onSubmit, submitButtonLabel, defaultValue}){
     });
   }
 
-  function submitHandler(){
+  function submitHandler(){ 
+    // updates list item or add new list item
     const expenseData = {
       amount: +inputs.amount.value,
       date: new Date(inputs.date.value),
       description: inputs.description.value,
     }
 
-    const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
+    const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0; // checks if ammount is number or not
     const dateIsValid = expenseData.date.toString() !== 'Invalid Date';
     const descriptionIsValid = expenseData.description.trim().length > 0;
 
     if (!amountIsValid || !dateIsValid || !descriptionIsValid){
       // Alert.alert('Invalid input', 'Please check your input values')
+      // checks validation and displays if a field is empty or incorect
       setInputs((curInputs) => {
         return {
           amount: {value: curInputs.amount.value, isValid: amountIsValid},
@@ -66,7 +71,8 @@ function ExpenseForm({onCancel, onSubmit, submitButtonLabel, defaultValue}){
     onSubmit(expenseData);   
   }
 
-  const formIsInvalid = !inputs.amount.isValid || !inputs.date.isValid || !inputs.description.isValid
+  // if inputs are not valid passes the check to each componant to return changed styles to indicate incoret data
+  const formIsInvalid = !inputs.amount.isValid || !inputs.date.isValid || !inputs.description.isValid 
 
   return (
     <View style={styles.form}>
@@ -77,8 +83,8 @@ function ExpenseForm({onCancel, onSubmit, submitButtonLabel, defaultValue}){
           label='Amount' 
           invalid={!inputs.amount.isValid}
           textInputConfig={{
-            keyboardType: 'decimal-pad',
-            onChangeText: inputChangedHandler.bind(this, 'amount'),
+            keyboardType: 'decimal-pad', // tells react native to use number pad only
+            onChangeText: inputChangedHandler.bind(this, 'amount'), // updates the ammount value
             value: inputs.amount.value,
           }}
         />
@@ -86,9 +92,9 @@ function ExpenseForm({onCancel, onSubmit, submitButtonLabel, defaultValue}){
           style={styles.rowFlex}
           invalid={!inputs.date.isValid}
           label='Date' textInputConfig={{
-            placeholder: 'YYYY-MM-DD',
+            placeholder: 'YYYY-MM-DD', // date format
             maxLength: 10,
-            onChangeText: inputChangedHandler.bind(this, 'date'),
+            onChangeText: inputChangedHandler.bind(this, 'date'), // updates the date value
             value: inputs.date.value
           }}
         />
@@ -97,7 +103,7 @@ function ExpenseForm({onCancel, onSubmit, submitButtonLabel, defaultValue}){
       invalid={!inputs.date.isValid} 
       textInputConfig={{
         multiline: true,
-        onChangeText: inputChangedHandler.bind(this, 'description'),
+        onChangeText: inputChangedHandler.bind(this, 'description'), // checks description value
         value: inputs.description.value
         // autocorrect: false,
         // autoCapitalize: ''
@@ -110,7 +116,7 @@ function ExpenseForm({onCancel, onSubmit, submitButtonLabel, defaultValue}){
           Cancel
         </Button>
         <Button style={styles.button} onPress={submitHandler}>
-          {submitButtonLabel}
+          {submitButtonLabel} 
         </Button>
       </View>
 

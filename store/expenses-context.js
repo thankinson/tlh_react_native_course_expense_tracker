@@ -66,10 +66,12 @@ export const ExpensesContext = createContext({
 
 function expensesReducer(state, action) {
   switch (action.type) {
+    // ADD allows to add new item to the list. creates ID from adding date and math.random
     case 'ADD':
       const id = new Date().toString() + Math.random().toString();
       return [{ ...action.payload, id: id }, ...state];
     case 'UPDATE':
+      // Update allows to update a current item in the list with new information
       const updatableExpenseIndex = state.findIndex(
         (expense) => expense.id === action.payload.id
       );
@@ -79,6 +81,7 @@ function expensesReducer(state, action) {
       updatedExpenses[updatableExpenseIndex] = updatedItem;
       return updatedExpenses;
     case 'DELETE':
+      // DELETE removes from the list
       return state.filter((expense) => expense.id !== action.payload);
     default:
       return state;

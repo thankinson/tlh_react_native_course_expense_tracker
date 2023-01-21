@@ -1,6 +1,8 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+// reusable Icon button componant that can be re used acroos app
+
 function IconButton({ icon, size, color, onPress }) {
   return (
     <Pressable
