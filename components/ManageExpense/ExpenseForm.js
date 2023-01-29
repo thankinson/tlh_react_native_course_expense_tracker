@@ -38,7 +38,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
       description: inputs.description.value,
     };
 
-    const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
+    const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0; // checks if ammount is number or not
     const dateIsValid = expenseData.date.toString() !== 'Invalid Date';
     const descriptionIsValid = expenseData.description.trim().length > 0;
 
@@ -74,8 +74,8 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
           label="Amount"
           invalid={!inputs.amount.isValid}
           textInputConfig={{
-            keyboardType: 'decimal-pad',
-            onChangeText: inputChangedHandler.bind(this, 'amount'),
+            keyboardType: 'decimal-pad', // tells react native to use number pad only
+            onChangeText: inputChangedHandler.bind(this, 'amount'), // updates the ammount value
             value: inputs.amount.value,
           }}
         />
@@ -112,7 +112,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
           Cancel
         </Button>
         <Button style={styles.button} onPress={submitHandler}>
-          {submitButtonLabel}
+          {submitButtonLabel} 
         </Button>
       </View>
     </View>

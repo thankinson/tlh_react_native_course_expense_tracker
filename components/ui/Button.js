@@ -1,6 +1,8 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { GlobalStyles } from '../../constants/styles';
 
+// Styled button componant that can be reused throughouut the app.
+
 function Button({ children, onPress, mode, style }) {
   return (
     <View style={style}>

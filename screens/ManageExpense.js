@@ -15,7 +15,7 @@ function ManageExpense({ route, navigation }) {
   
   const expensesCtx = useContext(ExpensesContext);
 
-  const editedExpenseId = route.params?.expenseId;
+  const editedExpenseId = route.params?.expenseId; 
   const isEditing = !!editedExpenseId;
 
   const selectedExpense = expensesCtx.expenses.find(
@@ -24,7 +24,7 @@ function ManageExpense({ route, navigation }) {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: isEditing ? 'Edit Expense' : 'Add Expense',
+      title: isEditing ? 'Edit Expense' : 'Add Expense', // if isEditing true 'Edit Expense' displayed else 'Add expense"
     });
   }, [navigation, isEditing]);
 

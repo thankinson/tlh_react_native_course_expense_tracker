@@ -7,6 +7,8 @@ import { ExpensesContext } from '../store/expenses-context';
 import { getDateMinusDays } from '../util/date';
 import { fetchExpnse } from '../util/http';
 
+// This screen displays expense from last 7 days
+
 function RecentExpenses() {
   const [isFecthing, setIsFetching] = useState(true);
   const expensesCtx = useContext(ExpensesContext);
@@ -41,11 +43,11 @@ function RecentExpenses() {
     return <LoadingOverlay />
   }
 
-  const recentExpenses = expensesCtx.expenses.filter((expense) => {
-    const today = new Date();
-    const date7DaysAgo = getDateMinusDays(today, 7);
+  const recentExpenses = expensesCtx.expenses.filter((expense) => { // filters items added in last 7 days
+    const today = new Date(); // gets curent date
+    const date7DaysAgo = getDateMinusDays(today, 7); // checks items form last 7 days from current date
 
-    return expense.date >= date7DaysAgo && expense.date <= today;
+    return expense.date >= date7DaysAgo && expense.date <= today; // returns items
   });
 
   return (
