@@ -8,6 +8,7 @@ import ManageExpense from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
 import { GlobalStyles } from './constants/styles';
+// import IconButton from './components/UI/IconButton';
 import IconButton from './components/UI/IconButton';
 import ExpensesContextProvider from './store/expenses-context';
 
@@ -31,7 +32,7 @@ function ExpensesOverview() {
               navigation.navigate('ManageExpense');
             }}
           />
-        ),
+        )
       })}
     >
       <BottomTabs.Screen
