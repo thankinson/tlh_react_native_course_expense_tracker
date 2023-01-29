@@ -4,12 +4,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import IconButton from './components/UI/IconButton';
 import ManageExpense from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
 import { GlobalStyles } from './constants/styles';
-// import IconButton from './components/UI/IconButton';
+import IconButton from './components/UI/IconButton';
 import ExpensesContextProvider from './store/expenses-context';
 
 const Stack = createNativeStackNavigator();
